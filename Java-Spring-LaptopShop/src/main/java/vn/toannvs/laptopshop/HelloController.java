@@ -8,7 +8,7 @@ public class HelloController {
 
     @GetMapping("/")
     public String index() {
-        return "Hello, my name is Viet";
+        return "Hello, my name is Toan, I am a Java developer   ";
     }
 
     @GetMapping("/user")
