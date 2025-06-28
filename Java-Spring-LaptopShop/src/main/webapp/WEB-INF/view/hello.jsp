@@ -7,7 +7,10 @@
 </head>
 
 <body>
-    <p>Hello form JSP</p>
+    <h1 style="color: red;">
+        ${hoidanit} <br>
+        ${eric} <br>
+    </h1>
 </body>
 
 </html>
