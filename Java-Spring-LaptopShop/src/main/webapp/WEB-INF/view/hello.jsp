@@ -14,12 +14,10 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/demo.css">
 </head>
-
 <body>
     <h1 style="color: red;">
         ${hoidanit} <br>
-        <button>Click me</button>
+        <button class="btn btn-warning">Click me</button>
     </h1>
 </body>
-
 </html>

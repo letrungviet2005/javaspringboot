@@ -1,12 +1,13 @@
 package vn.toannvs.laptopshop.controller;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import vn.toannvs.laptopshop.domain.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import vn.toannvs.laptopshop.service.UserService;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
@@ -24,6 +25,22 @@ public class UserController {
         model.addAttribute("hoidanit", "from controller with model");
         return "hello";
     }
+
+    @RequestMapping("/admin/user")
+    public String getUserPage(Model model) {
+        model.addAttribute("newUser", new User());
+        return "admin/user/create";
+    }
+
+    @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
+    public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
+        System.out.println("User: " + user);
+        System.out.println("create new user");
+        // Here you would typically handle the form submission, e.g., save the user to
+        // the database
+        return "hello";
+    }
+
 }
 // @RestController()
 // public class UserController {
