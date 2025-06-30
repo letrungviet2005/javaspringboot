@@ -36,18 +36,17 @@ public class UserController {
         return "admin/user/create";
     }
 
-// @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
-// public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
-// System.out.println("User: " + user);
-// System.out.println("create new user");
-// this.userRepository.save(user);
-// // Here you would typically handle the form submission, e.g., save the user
-// to
-// // the database
-// return "hello";
-// }
+    @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
+    public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
+        System.out.println("User: " + user);
+        System.out.println("create new user");
+        this.userRepository.save(user);
+        // Here you would typically handle the form submission, e.g., save the user to
+        // the database
+        return "hello";
+    }
 
-// }
+}
 // @RestController()
 // public class UserController {
 // private UserService userService;
