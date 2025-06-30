@@ -1,6 +1,8 @@
 package vn.toannvs.laptopshop.controller;
 
 import vn.toannvs.laptopshop.domain.User;
+import vn.toannvs.laptopshop.repository.UserRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
     private UserService userService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
+        this.userRepository = userRepository;
         this.userService = userService;
     }
 
@@ -36,6 +40,7 @@ public class UserController {
     public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
         System.out.println("User: " + user);
         System.out.println("create new user");
+        this.userRepository.save(user);
         // Here you would typically handle the form submission, e.g., save the user to
         // the database
         return "hello";
