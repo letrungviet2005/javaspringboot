@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
     private UserService userService;
-    private final UserRepository userRepository;
 
-    public UserController(UserService userService, UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -40,9 +38,7 @@ public class UserController {
     public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
         System.out.println("User: " + user);
         System.out.println("create new user");
-        this.userRepository.save(user);
-        // Here you would typically handle the form submission, e.g., save the user to
-        // the database
+        this.userService.handleSaveUser(user);
         return "hello";
     }
 
