@@ -3,6 +3,7 @@ package vn.toannvs.laptopshop.service;
 import org.springframework.stereotype.Service;
 import vn.toannvs.laptopshop.repository.UserRepository;
 import vn.toannvs.laptopshop.domain.User;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -21,6 +22,15 @@ public class UserService {
 
         User eric = this.userRepository.save(user);
         return eric;
+
+    }
+
+    public List<User> getAllUSers() {
+        return this.userRepository.findAll();
+    }
+
+    public List<User> getAllUsersByEmail(String email) {
+        return this.userRepository.findAll();
     }
 
 }

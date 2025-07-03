@@ -3,6 +3,8 @@ package vn.toannvs.laptopshop.controller;
 import vn.toannvs.laptopshop.domain.User;
 import vn.toannvs.laptopshop.repository.UserRepository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,15 +24,24 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        String test = this.userService.handleHello();
-        model.addAttribute("eric", test);
-        model.addAttribute("hoidanit", "from controller with model");
+        List<User> users = this.userService.getAllUSers();
+        System.out.println("Users: " + users);
         return "hello";
     }
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
         model.addAttribute("newUser", new User());
+        List<User> users = this.userService.getAllUSers();
+        model.addAttribute("users", users);
+        return "admin/user/user";
+    }
+
+    @RequestMapping("/admin/user/create")
+    public String createUser(Model model) {
+        model.addAttribute("newUser", new User());
+        List<User> users = this.userService.getAllUSers();
+        model.addAttribute("users", users);
         return "admin/user/create";
     }
 
