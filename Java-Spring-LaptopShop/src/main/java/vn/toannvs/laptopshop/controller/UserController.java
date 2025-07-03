@@ -45,7 +45,7 @@ public class UserController {
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create1", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
         System.out.println("User: " + user);
         System.out.println("create new user");

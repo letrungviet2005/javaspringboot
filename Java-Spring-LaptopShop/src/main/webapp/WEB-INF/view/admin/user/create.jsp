@@ -23,7 +23,7 @@
             <body>
                 <div class="container mt-5">
                     <h1 class="text-center mb-4">Create User</h1>
-                    <form:form action="/admin/user/create1" method="POST" modelAttribute="newUser">
+                    <form:form action="/admin/user/create" method="POST" modelAttribute="newUser">
                         <div class="mb-3">
                             <form:label path="email" cssClass="form-label">Email</form:label>
                             <form:input path="email" cssClass="form-control" />
