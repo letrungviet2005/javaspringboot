@@ -29,13 +29,13 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping("/admin/user")
-    public String getUserPage(Model model) {
-        model.addAttribute("newUser", new User());
-        List<User> users = this.userService.getAllUSers();
-        model.addAttribute("users", users);
-        return "admin/user/user";
-    }
+    // @RequestMapping("/admin/user")
+    // public String getUserPage(Model model) {
+    // model.addAttribute("newUser", new User());
+    // List<User> users = this.userService.getAllUSers();
+    // model.addAttribute("users", users);
+    // return "admin/user/user";
+    // }
 
     @RequestMapping("/admin/user/create")
     public String createUser(Model model) {
