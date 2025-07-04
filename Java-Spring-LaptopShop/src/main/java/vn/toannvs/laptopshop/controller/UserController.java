@@ -37,13 +37,13 @@ public class UserController {
         return "admin/user/user";
     }
 
-    @RequestMapping("/admin/user/create")
-    public String createUser(Model model) {
-        model.addAttribute("newUser", new User());
-        List<User> users = this.userService.getAllUSers();
-        model.addAttribute("users", users);
-        return "admin/user/create";
-    }
+    // @RequestMapping("/admin/user/create")
+    // public String createUser(Model model) {
+    //     model.addAttribute("newUser", new User());
+    //     List<User> users = this.userService.getAllUSers();
+    //     model.addAttribute("users", users);
+    //     return "admin/user/create";
+    // }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
