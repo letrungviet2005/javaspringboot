@@ -22,7 +22,7 @@
 
             <body>
                 <div class="d-flex justify-content-end mt-3 me-3">
-                    <button class="btn btn-primary" onclick="location.href='/admin/user/create'">
+                    <button class="btn btn-primary" onclick="location.href='/admin/user'">
                         Create User
                     </button>
                 </div>

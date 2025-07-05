@@ -24,7 +24,9 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
+        List<User> findUser = userService.getAllUsersByEmail("vitprofb@gmail.com");
         List<User> users = this.userService.getAllUSers();
+        System.out.println("Find User: " + findUser);
         System.out.println("Users: " + users);
         return "hello";
     }
@@ -34,7 +36,7 @@ public class UserController {
         model.addAttribute("newUser", new User());
         List<User> users = this.userService.getAllUSers();
         model.addAttribute("users", users);
-        return "admin/user/user";
+        return "admin/user/table-user";
     }
 
     @RequestMapping("/admin/user/create")
