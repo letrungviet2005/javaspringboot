@@ -57,12 +57,12 @@ public class UserController {
         return "hello";
     }
 
-    @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
-    public String getUserDetailPage(@PathVariable("id") long id, Model model) {
-        User user = this.userService.getUserById(id);
-        model.addAttribute("user", user);
-        return "admin/user/detail-user";
-    }
+    // @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
+    // public String getUserDetailPage(@PathVariable("id") long id, Model model) {
+    // User user = this.userService.getUserById(id);
+    // model.addAttribute("user", user);
+    // return "admin/user/detail-user";
+    // }
 
 }
 // @RestController()
