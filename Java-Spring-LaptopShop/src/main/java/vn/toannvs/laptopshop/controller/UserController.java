@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.toannvs.laptopshop.service.UserService;
@@ -50,9 +51,24 @@ public class UserController {
     }
 
     @RequestMapping("/admin/user/update/{id}")
-    public String getUpdateUserPage(Model model) {
-        model.addAttribute("newUser", new User());
+    public String getUpdateUserPage(@PathVariable("id") long id, Model model) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
         return "admin/user/update-user";
+    }
+
+    @PostMapping("/admin/user/update")
+    public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
+        User existingUser = this.userService.getUserById(user.getId());
+        System.out.println("Update User: " + user);
+        if (existingUser != null) {
+            existingUser.setEmail(user.getEmail());
+            existingUser.setFullname(user.getFullname());
+            existingUser.setPassword(user.getPassword());
+            this.userService.handleUpdateUser(existingUser);
+        }
+
+        return "admin/user";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)

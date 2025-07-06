@@ -37,4 +37,10 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
+    public User handleUpdateUser(User user) {
+        // Logic to update the user
+        User updatedUser = this.userRepository.save(user);
+        return updatedUser;
+    }
+
 }
