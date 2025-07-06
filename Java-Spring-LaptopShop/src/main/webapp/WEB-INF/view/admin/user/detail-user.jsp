@@ -34,25 +34,16 @@
                                 <th>Id</th>
                                 <th>Email</th>
                                 <th>Full Name</th>
-                                <th>Action</th>
+                                <th>Password</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${users}" var="user">
-                                <tr>
-                                    <td>${user.id}</td>
-                                    <td>${user.email}</td>
-                                    <td>${user.fullname}</td>
-                                    <td>
-                                        <a href="/admin/user/${user.id}">
-                                            <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                            <button class="btn btn-success">View</button>
-                                        </a>
-
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <tr>
+                                <td>${user.id}</td>
+                                <td>${user.email}</td>
+                                <td>${user.fullname}</td>
+                                <td>${user.password}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
