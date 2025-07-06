@@ -49,6 +49,12 @@ public class UserController {
         return "admin/user/create";
     }
 
+    @RequestMapping("/admin/user/update/{id}")
+    public String getUpdateUserPage(Model model) {
+        model.addAttribute("newUser", new User());
+        return "admin/user/update-user";
+    }
+
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
         System.out.println("User: " + user);

@@ -44,11 +44,14 @@
                                     <td>${user.email}</td>
                                     <td>${user.fullname}</td>
                                     <td>
-                                        <a href="/admin/user/${user.id}">
-                                            <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                            <button class="btn btn-success">View</button>
-                                        </a>
+                                        <div>
+                                            <button class="btn btn-primary"><a
+                                                    href="/admin/user/update/${user.id}">Edit</a></button>
+                                            <button class="btn btn-danger"><a
+                                                    href="/admin/user/delete/${user.id}">Delete</a></button>
+                                            <button class="btn btn-success"><a
+                                                    href="/admin/user/${user.id}">View</a></button>
+                                        </div>
 
                                     </td>
                                 </tr>
