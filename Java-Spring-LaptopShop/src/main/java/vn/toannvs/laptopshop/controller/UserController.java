@@ -64,11 +64,10 @@ public class UserController {
         if (existingUser != null) {
             existingUser.setEmail(user.getEmail());
             existingUser.setFullname(user.getFullname());
-            existingUser.setPassword(user.getPassword());
             this.userService.handleUpdateUser(existingUser);
         }
 
-        return "admin/user";
+        return "redirect:/admin/user";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)

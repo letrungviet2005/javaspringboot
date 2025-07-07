@@ -23,10 +23,9 @@
             <body>
                 <div class="container mt-5">
                     <h1 class="text-center mb-4">Create User</h1>
-                    <form:form action="/admin/user/update/${id}" method="POST" modelAttribute="user">
+                    <form:form action="/admin/user/update" method="POST" modelAttribute="user">
                         <div class="mb-3" disabled="true" style="display:none">
-                            <form:label path="id" cssClass="form-label" disabled="true" style="display:none">ID
-                            </form:label>
+                            <form:label path="id" cssClass="form-label">ID</form:label>
                             <form:input path="id" cssClass="form-control" />
                         </div>
                         <div class="mb-3">

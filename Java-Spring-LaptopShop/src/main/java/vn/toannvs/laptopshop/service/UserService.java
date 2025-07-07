@@ -40,6 +40,7 @@ public class UserService {
     public User handleUpdateUser(User user) {
         // Logic to update the user
         User updatedUser = this.userRepository.save(user);
+        System.out.println("Updated User: " + updatedUser);
         return updatedUser;
     }
 
