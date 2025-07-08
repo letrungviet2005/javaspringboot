@@ -6,6 +6,7 @@ import vn.toannvs.laptopshop.repository.UserRepository;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,6 +84,24 @@ public class UserController {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
         return "admin/user/detail-user";
+    }
+
+    @GetMapping(value = "/admin/user/delete/{id}")
+    public String getDeleteUser(@PathVariable("id") long id, Model model) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "admin/user/delete-user";
+    }
+
+    @PostMapping(value = "/admin/user/delete")
+    public String postDeleteUser(@RequestParam("id") long id, Model model) {
+        User deletedUser = this.userService.handleDeleteUser(id);
+        if (deletedUser != null) {
+            System.out.println("Deleted User: " + deletedUser);
+        } else {
+            System.out.println("User not found for deletion with ID: " + id);
+        }
+        return "redirect:/admin/user";
     }
 
 }

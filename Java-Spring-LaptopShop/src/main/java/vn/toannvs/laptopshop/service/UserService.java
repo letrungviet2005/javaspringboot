@@ -44,4 +44,13 @@ public class UserService {
         return updatedUser;
     }
 
+    public User handleDeleteUser(long id) {
+        User user = this.userRepository.findById(id);
+        if (user != null) {
+            this.userRepository.delete(user);
+            return user;
+        }
+        return null; // or throw an exception if preferred
+    }
+
 }
