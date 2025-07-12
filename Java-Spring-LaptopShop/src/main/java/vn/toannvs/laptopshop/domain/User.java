@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -20,6 +20,10 @@ public class User {
     private String fullname;
     private String phone;
     private String address;
+
+    // User many to one role
+    @ManyToOne
+    private Role role;
 
     public void setId(long id) {
         this.id = id;
