@@ -5,9 +5,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,7 +26,12 @@ public class User {
 
     // User many to one role
     @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
+
+    // User one to manu orders
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public void setId(long id) {
         this.id = id;
