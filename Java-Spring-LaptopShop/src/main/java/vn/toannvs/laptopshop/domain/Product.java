@@ -2,7 +2,11 @@ package vn.toannvs.laptopshop.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -15,6 +19,9 @@ public class Product {
     private String description;
     private double price;
     private String imageUrl;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderDetail> orderDetails;
 
     public long getId() {
         return id;
