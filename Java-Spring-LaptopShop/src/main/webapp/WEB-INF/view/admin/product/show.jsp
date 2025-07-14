@@ -7,7 +7,8 @@
 </head>
 
 <body>
-
+    show Product
+    <jsp:include page="/admin/user" />
 </body>
 
 </html>
