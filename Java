@@ -1,0 +1,13 @@
+package vn.toannvs.laptopshop.controller.admin;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class DashBoardController {
+
+    @GetMapping("/admin/dashboard")
+    public String getDashboard() {
+        // Logic to retrieve dashboard data
+        return "admin/dashboard"; // This should return the name of the view to be rendered
+    }
+
+}
