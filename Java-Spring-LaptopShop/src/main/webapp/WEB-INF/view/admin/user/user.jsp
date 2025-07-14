@@ -21,7 +21,33 @@
                     <jsp:include page="../layout/sidebar.jsp" />
                     <div id="layoutSidenav_content">
                         <main>
-                            <div> Thông tin Order</div>
+                            <div> Thông tin User</div>
+                            <div class="d-flex justify-content-end mt-3 me-3">
+                                <button class="btn btn-primary" onclick="location.href='/admin/user'">
+                                    Create User
+                                </button>
+                            </div>
+                            <div class="container mt-5">
+                                <h2 class="text-center mb-4">Table</h2>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Email</th>
+                                            <th>Full Name</th>
+                                            <th>Password</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>${user.id}</td>
+                                            <td>${user.email}</td>
+                                            <td>${user.fullname}</td>
+                                            <td>${user.password}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />
                     </div>
