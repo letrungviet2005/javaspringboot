@@ -1,4 +1,4 @@
-package vn.toannvs.laptopshop.controller;
+package vn.toannvs.laptopshop.controller.admin;
 
 import vn.toannvs.laptopshop.domain.User;
 import vn.toannvs.laptopshop.repository.UserRepository;
@@ -26,89 +26,83 @@ public class UserController {
         this.userService = userService;
     }
 
-     @GetMapping("admin/user")
-    public String getAdminUser() {
+    @RequestMapping("/")
+    public String getHomePage(Model model) {
+        List<User> findUser = userService.getAllUsersByEmail("vitprofb@gmail.com");
+        List<User> users = this.userService.getAllUSers();
+        System.out.println("Find User: " + findUser);
+        System.out.println("Users: " + users);
+        return "hello";
+    }
+
+    @RequestMapping("/admin/user")
+    public String getUserPage(Model model) {
+        model.addAttribute("newUser", new User());
+        List<User> users = this.userService.getAllUSers();
+        model.addAttribute("users", users);
         return "admin/user/user";
     }
 
-    // @RequestMapping("/")
-    // public String getHomePage(Model model) {
-    // List<User> findUser = userService.getAllUsersByEmail("vitprofb@gmail.com");
-    // List<User> users = this.userService.getAllUSers();
-    // System.out.println("Find User: " + findUser);
-    // System.out.println("Users: " + users);
-    // return "hello";
-    // }
+    @RequestMapping("/admin/user/create")
+    public String createUser(Model model) {
+        model.addAttribute("newUser", new User());
+        List<User> users = this.userService.getAllUSers();
+        model.addAttribute("users", users);
+        return "admin/user/create";
+    }
 
-    // @RequestMapping("/admin/user")
-    // public String getUserPage(Model model) {
-    // model.addAttribute("newUser", new User());
-    // List<User> users = this.userService.getAllUSers();
-    // model.addAttribute("users", users);
-    // return "admin/user/table-user";
-    // }
+    @RequestMapping("/admin/user/update/{id}")
+    public String getUpdateUserPage(@PathVariable("id") long id, Model model) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "admin/user/update-user";
+    }
 
-    // @RequestMapping("/admin/user/create")
-    // public String createUser(Model model) {
-    // model.addAttribute("newUser", new User());
-    // List<User> users = this.userService.getAllUSers();
-    // model.addAttribute("users", users);
-    // return "admin/user/create";
-    // }
+    @PostMapping("/admin/user/update")
+    public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
+        User existingUser = this.userService.getUserById(user.getId());
+        System.out.println("Update User: " + user);
+        if (existingUser != null) {
+            existingUser.setEmail(user.getEmail());
+            existingUser.setFullname(user.getFullname());
+            this.userService.handleUpdateUser(existingUser);
+        }
 
-    // @RequestMapping("/admin/user/update/{id}")
-    // public String getUpdateUserPage(@PathVariable("id") long id, Model model) {
-    // User user = this.userService.getUserById(id);
-    // model.addAttribute("user", user);
-    // return "admin/user/update-user";
-    // }
+        return "redirect:/admin/user";
+    }
 
-    // @PostMapping("/admin/user/update")
-    // public String postUpdateUser(Model model, @ModelAttribute("user") User user)
-    // {
-    // User existingUser = this.userService.getUserById(user.getId());
-    // System.out.println("Update User: " + user);
-    // if (existingUser != null) {
-    // existingUser.setEmail(user.getEmail());
-    // existingUser.setFullname(user.getFullname());
-    // this.userService.handleUpdateUser(existingUser);
-    // }
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
+    public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
+        System.out.println("User: " + user);
+        System.out.println("create new user");
+        this.userService.handleSaveUser(user);
+        return "hello";
+    }
 
-    // return "redirect:/admin/user";
-    // }
+    @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
+    public String getUserDetailPage(@PathVariable("id") long id, Model model) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "admin/user/user";
+    }
 
-    // @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    // public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
-    // System.out.println("User: " + user);
-    // System.out.println("create new user");
-    // this.userService.handleSaveUser(user);
-    // return "hello";
-    // }
+    @GetMapping(value = "/admin/user/delete/{id}")
+    public String getDeleteUser(@PathVariable("id") long id, Model model) {
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "admin/user/delete";
+    }
 
-    // @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
-    // public String getUserDetailPage(@PathVariable("id") long id, Model model) {
-    // User user = this.userService.getUserById(id);
-    // model.addAttribute("user", user);
-    // return "admin/user/detail-user";
-    // }
-
-    // @GetMapping(value = "/admin/user/delete/{id}")
-    // public String getDeleteUser(@PathVariable("id") long id, Model model) {
-    // User user = this.userService.getUserById(id);
-    // model.addAttribute("user", user);
-    // return "admin/user/delete-user";
-    // }
-
-    // @PostMapping(value = "/admin/user/delete")
-    // public String postDeleteUser(@RequestParam("id") long id, Model model) {
-    // User deletedUser = this.userService.handleDeleteUser(id);
-    // if (deletedUser != null) {
-    // System.out.println("Deleted User: " + deletedUser);
-    // } else {
-    // System.out.println("User not found for deletion with ID: " + id);
-    // }
-    // return "redirect:/admin/user";
-    // }
+    @PostMapping(value = "/admin/user/delete")
+    public String postDeleteUser(@RequestParam("id") long id, Model model) {
+        User deletedUser = this.userService.handleDeleteUser(id);
+        if (deletedUser != null) {
+            System.out.println("Deleted User: " + deletedUser);
+        } else {
+            System.out.println("User not found for deletion with ID: " + id);
+        }
+        return "redirect:/admin/user";
+    }
 
 }
 // @RestController()

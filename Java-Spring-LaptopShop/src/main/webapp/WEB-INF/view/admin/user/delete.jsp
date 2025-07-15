@@ -21,7 +21,33 @@
                     <jsp:include page="../layout/sidebar.jsp" />
                     <div id="layoutSidenav_content">
                         <main>
-                            <div> Thông tin Order</div>
+                            <!-- Thông tin của trang layout -->
+                            <div class="container mt-5">
+                                <h1 class="text-center mb-4">Delete User</h1>
+                                <form:form action="/admin/user/delete" method="POST" modelAttribute="user">
+                                    <div class="mb-3" disabled="true" style="display:none">
+                                        <form:label path="id" cssClass="form-label">ID</form:label>
+                                        <form:input path="id" cssClass="form-control" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <form:label path="email" cssClass="form-label">Email</form:label>
+                                        <form:input path="email" cssClass="form-control" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <form:label path="fullname" cssClass="form-label">Full Name</form:label>
+                                        <form:input path="fullname" cssClass="form-control" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <form:label path="phone" cssClass="form-label">Phone number</form:label>
+                                        <form:input path="phone" cssClass="form-control" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <form:label path="address" cssClass="form-label">Address</form:label>
+                                        <form:input path="address" cssClass="form-control" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Delete User</button>
+                                </form:form>
+                            </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />
                     </div>

@@ -21,7 +21,7 @@
                     <jsp:include page="../layout/sidebar.jsp" />
                     <div id="layoutSidenav_content">
                         <main>
-                            <div> Thông tin Order</div>
+                            <!-- Thông tin của trang layout -->
                         </main>
                         <jsp:include page="../layout/footer.jsp" />
                     </div>

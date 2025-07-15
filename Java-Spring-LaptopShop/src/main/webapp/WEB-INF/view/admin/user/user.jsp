@@ -11,7 +11,7 @@
                 <meta name="author" content="" />
                 <title>Dashboard - SB Admin</title>
                 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-                <link href="css/styles.css" rel="stylesheet" />
+                <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
 
@@ -23,7 +23,7 @@
                         <main>
                             <div> Thông tin User</div>
                             <div class="d-flex justify-content-end mt-3 me-3">
-                                <button class="btn btn-primary" onclick="location.href='/admin/user'">
+                                <button class="btn btn-primary" onclick="location.href='/admin/user/create'">
                                     Create User
                                 </button>
                             </div>
@@ -35,16 +35,28 @@
                                             <th>Id</th>
                                             <th>Email</th>
                                             <th>Full Name</th>
-                                            <th>Password</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>${user.id}</td>
-                                            <td>${user.email}</td>
-                                            <td>${user.fullname}</td>
-                                            <td>${user.password}</td>
-                                        </tr>
+                                        <c:forEach items="${users}" var="user">
+                                            <tr>
+                                                <td>${user.id}</td>
+                                                <td>${user.email}</td>
+                                                <td>${user.fullname}</td>
+                                                <td>
+                                                    <div>
+                                                        <button class="btn btn-primary"><a
+                                                                href="/admin/user/update/${user.id}">Edit</a></button>
+                                                        <button class="btn btn-danger"><a
+                                                                href="/admin/user/delete/${user.id}">Delete</a></button>
+                                                        <button class="btn btn-success"><a
+                                                                href="/admin/user/${user.id}">View</a></button>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
