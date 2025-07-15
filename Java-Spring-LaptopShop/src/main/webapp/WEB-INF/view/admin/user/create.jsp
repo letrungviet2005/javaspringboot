@@ -24,7 +24,8 @@
                             <!-- Thông tin của trang layout -->
                             <div class="container mt-5">
                                 <h1 class="text-center mb-4">Create User</h1>
-                                <form:form action="/admin/user/create" method="POST" modelAttribute="newUser">
+                                <form:form action="/admin/user/create" method="POST" modelAttribute="newUser"
+                                    enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <form:label path="email" cssClass="form-label">Email</form:label>
                                         <form:input path="email" cssClass="form-control" />
@@ -45,6 +46,25 @@
                                         <form:label path="address" cssClass="form-label">Address</form:label>
                                         <form:input path="address" cssClass="form-control" />
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Upload Image</label>
+                                        <input type="file" name="image" class="form-control" />
+                                    </div>
+                                    <!-- ✅ Trường chọn ảnh -->
+                                    <div class="mb-3">
+                                        <label class="form-label">Upload Image</label>
+                                        <input type="file" name="image" class="form-control" />
+                                    </div>
+
+                                    <!-- ✅ Trường select ví dụ chọn role -->
+                                    <!-- <div class="mb-3">
+                                        <form:label path="role" cssClass="form-label">Role</form:label>
+                                        <form:select path="role" cssClass="form-select">
+                                            <form:option value="">-- Select Role --</form:option>
+                                            <form:option value="admin">Admin</form:option>
+                                            <form:option value="user">User</form:option>
+                                        </form:select>
+                                    </div> -->
                                     <button type="submit" class="btn btn-primary">Create User</button>
                                 </form:form>
                             </div>

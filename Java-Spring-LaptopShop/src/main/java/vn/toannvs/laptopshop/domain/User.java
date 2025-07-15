@@ -87,4 +87,12 @@ public class User {
         return "User [ Id =" + id + ",email=" + email + ", password=" + password + ", phone=" + phone
                 + ", fullname=" + fullname + ", address=" + address + "]";
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
