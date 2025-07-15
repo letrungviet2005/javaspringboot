@@ -26,6 +26,11 @@ public class UserController {
         this.userService = userService;
     }
 
+     @GetMapping("admin/user")
+    public String getAdminUser() {
+        return "admin/user/user";
+    }
+
     // @RequestMapping("/")
     // public String getHomePage(Model model) {
     // List<User> findUser = userService.getAllUsersByEmail("vitprofb@gmail.com");
