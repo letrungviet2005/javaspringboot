@@ -43,7 +43,7 @@ public class UserController {
         return "admin/user/user";
     }
 
-    @RequestMapping("/admin/user/create")
+    @GetMapping("/admin/user/create")
     public String createUser(Model model) {
         model.addAttribute("newUser", new User());
         List<User> users = this.userService.getAllUSers();

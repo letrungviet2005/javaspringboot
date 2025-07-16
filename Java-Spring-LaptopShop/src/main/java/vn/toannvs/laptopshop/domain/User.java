@@ -33,6 +33,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -88,11 +96,4 @@ public class User {
                 + ", fullname=" + fullname + ", address=" + address + "]";
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

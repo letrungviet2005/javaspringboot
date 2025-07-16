@@ -52,4 +52,12 @@ public class Role {
         return "Role [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
 }
