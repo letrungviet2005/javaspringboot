@@ -8,7 +8,6 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final RoleService roleService;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;

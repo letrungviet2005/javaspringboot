@@ -3,6 +3,9 @@ package vn.toannvs.laptopshop.controller.admin;
 import vn.toannvs.laptopshop.domain.User;
 import vn.toannvs.laptopshop.repository.UserRepository;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -12,18 +15,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import vn.toannvs.laptopshop.service.UploadService;
 import vn.toannvs.laptopshop.service.UserService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.context.ServletContextAware;
+import jakarta.servlet.ServletContext;
+import java.io.File;
 
 @Controller
 public class UserController {
 
     private UserService userService;
+    private final ServletContext servletContext;
+    private final UploadService uploadService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ServletContext servletContext, UploadService uploadService) {
         this.userService = userService;
+        this.servletContext = servletContext;
+        this.uploadService = uploadService;
     }
 
     @RequestMapping("/")
@@ -71,12 +83,20 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
+    // Create new User
+
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String getnewForm(Model model, @ModelAttribute("newUser") User user) {
-        System.out.println("User: " + user);
-        System.out.println("create new user");
+    public String handleCreateUser(Model model,
+            @ModelAttribute("newUser") User user,
+            @RequestParam("hoidanitFile") MultipartFile file) {
+
+        // Gọi service lưu user
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        System.out.println("Avatar: " + avatar);
         this.userService.handleSaveUser(user);
-        return "hello";
+        System.out.println("Created User: " + user);
+
+        return "redirect:/admin/user";
     }
 
     @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
