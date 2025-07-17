@@ -91,8 +91,8 @@ public class UserController {
             @RequestParam("hoidanitFile") MultipartFile file) {
 
         // Gọi service lưu user
-        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        System.out.println("Avatar: " + avatar);
+        this.uploadService.handleSaveUploadFile(file, "avatar");
+
         this.userService.handleSaveUser(user);
         System.out.println("Created User: " + user);
 
