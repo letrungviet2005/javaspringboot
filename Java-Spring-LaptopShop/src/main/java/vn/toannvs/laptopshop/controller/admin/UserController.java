@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,11 +32,14 @@ public class UserController {
     private UserService userService;
     private final ServletContext servletContext;
     private final UploadService uploadService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UserService userService, ServletContext servletContext, UploadService uploadService) {
+    public UserController(UserService userService, ServletContext servletContext, UploadService uploadService,
+            BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.servletContext = servletContext;
         this.uploadService = uploadService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @RequestMapping("/")
@@ -92,7 +96,8 @@ public class UserController {
 
         // Gọi service lưu user
         this.uploadService.handleSaveUploadFile(file, "avatar");
-
+        String hashPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(hashPassword);
         this.userService.handleSaveUser(user);
         System.out.println("Created User: " + user);
 
