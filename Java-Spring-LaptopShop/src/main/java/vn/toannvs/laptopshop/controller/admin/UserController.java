@@ -74,18 +74,18 @@ public class UserController {
         return "admin/user/update-user";
     }
 
-    // @PostMapping("/admin/user/update")
-    // public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
-    //     User existingUser = this.userService.getUserById(user.getId());
-    //     System.out.println("Update User: " + user);
-    //     if (existingUser != null) {
-    //         existingUser.setEmail(user.getEmail());
-    //         existingUser.setFullname(user.getFullname());
-    //         this.userService.handleUpdateUser(existingUser);
-    //     }
+    @PostMapping("/admin/user/update")
+    public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
+        User existingUser = this.userService.getUserById(user.getId());
+        System.out.println("Update User: " + user);
+        if (existingUser != null) {
+            existingUser.setEmail(user.getEmail());
+            existingUser.setFullname(user.getFullname());
+            this.userService.handleUpdateUser(existingUser);
+        }
 
-    //     return "redirect:/admin/user";
-    // }
+        return "redirect:/admin/user";
+    }
 
     // Create new User
 
