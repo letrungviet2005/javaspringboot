@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,14 +32,14 @@ public class UserController {
     private UserService userService;
     private final ServletContext servletContext;
     private final UploadService uploadService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public UserController(UserService userService, ServletContext servletContext, UploadService uploadService,
-            BCryptPasswordEncoder bCryptPasswordEncoder) {
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.servletContext = servletContext;
         this.uploadService = uploadService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
@@ -74,18 +74,18 @@ public class UserController {
         return "admin/user/update-user";
     }
 
-    @PostMapping("/admin/user/update")
-    public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
-        User existingUser = this.userService.getUserById(user.getId());
-        System.out.println("Update User: " + user);
-        if (existingUser != null) {
-            existingUser.setEmail(user.getEmail());
-            existingUser.setFullname(user.getFullname());
-            this.userService.handleUpdateUser(existingUser);
-        }
+    // @PostMapping("/admin/user/update")
+    // public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
+    //     User existingUser = this.userService.getUserById(user.getId());
+    //     System.out.println("Update User: " + user);
+    //     if (existingUser != null) {
+    //         existingUser.setEmail(user.getEmail());
+    //         existingUser.setFullname(user.getFullname());
+    //         this.userService.handleUpdateUser(existingUser);
+    //     }
 
-        return "redirect:/admin/user";
-    }
+    //     return "redirect:/admin/user";
+    // }
 
     // Create new User
 
@@ -96,8 +96,7 @@ public class UserController {
 
         // Gọi service lưu user
         this.uploadService.handleSaveUploadFile(file, "avatar");
-        String hashPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(hashPassword);
+
         this.userService.handleSaveUser(user);
         System.out.println("Created User: " + user);
 
