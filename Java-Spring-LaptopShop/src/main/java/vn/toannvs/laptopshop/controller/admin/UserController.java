@@ -89,19 +89,19 @@ public class UserController {
 
     // Create new User
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String handleCreateUser(Model model,
-            @ModelAttribute("newUser") User user,
-            @RequestParam("hoidanitFile") MultipartFile file) {
+    // @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
+    // public String handleCreateUser(Model model,
+    // @ModelAttribute("newUser") User user,
+    // @RequestParam("hoidanitFile") MultipartFile file) {
 
-        // Gọi service lưu user
-        this.uploadService.handleSaveUploadFile(file, "avatar");
+    // // Gọi service lưu user
+    // this.uploadService.handleSaveUploadFile(file, "avatar");
 
-        this.userService.handleSaveUser(user);
-        System.out.println("Created User: " + user);
+    // this.userService.handleSaveUser(user);
+    // System.out.println("Created User: " + user);
 
-        return "redirect:/admin/user";
-    }
+    // return "redirect:/admin/user";
+    // }
 
     @RequestMapping(value = "/admin/user/{id}", method = RequestMethod.GET)
     public String getUserDetailPage(@PathVariable("id") long id, Model model) {
