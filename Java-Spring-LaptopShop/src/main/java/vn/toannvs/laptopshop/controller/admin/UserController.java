@@ -117,16 +117,16 @@ public class UserController {
         return "admin/user/delete";
     }
 
-    @PostMapping(value = "/admin/user/delete")
-    public String postDeleteUser(@RequestParam("id") long id, Model model) {
-        User deletedUser = this.userService.handleDeleteUser(id);
-        if (deletedUser != null) {
-            System.out.println("Deleted User: " + deletedUser);
-        } else {
-            System.out.println("User not found for deletion with ID: " + id);
-        }
-        return "redirect:/admin/user";
-    }
+    // @PostMapping(value = "/admin/user/delete")
+    // public String postDeleteUser(@RequestParam("id") long id, Model model) {
+    // User deletedUser = this.userService.handleDeleteUser(id);
+    // if (deletedUser != null) {
+    // System.out.println("Deleted User: " + deletedUser);
+    // } else {
+    // System.out.println("User not found for deletion with ID: " + id);
+    // }
+    // return "redirect:/admin/user";
+    // }
 
 }
 // @RestController()
