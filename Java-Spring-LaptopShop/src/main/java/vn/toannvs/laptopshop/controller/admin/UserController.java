@@ -99,6 +99,7 @@ public class UserController {
         String hasspassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hasspassword);
         user.setAvatar(avatar);
+        user.setRole(this.userService.getRoleByName(user.getRole().getName()));
 
         this.userService.handleSaveUser(user);
         System.out.println("Created User: " + user);
