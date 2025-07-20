@@ -81,6 +81,9 @@ public class UserController {
         if (existingUser != null) {
             existingUser.setEmail(user.getEmail());
             existingUser.setFullname(user.getFullname());
+            existingUser.setPhone(user.getPhone());
+            existingUser.setAddress(user.getAddress());
+            existingUser.setAvatar(user.getAvatar()); // Assuming avatar is updated
             this.userService.handleUpdateUser(existingUser);
         }
 
