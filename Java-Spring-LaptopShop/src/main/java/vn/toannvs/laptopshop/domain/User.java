@@ -23,6 +23,15 @@ public class User {
     private String fullname;
     private String phone;
     private String address;
+    private String avatar;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     // User many to one role
     @ManyToOne
