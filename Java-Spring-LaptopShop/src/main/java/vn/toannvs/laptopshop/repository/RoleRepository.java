@@ -9,7 +9,4 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
     // Define any custom query methods if needed
     Role findByName(String name);
 
-    
-}{
-
 }
