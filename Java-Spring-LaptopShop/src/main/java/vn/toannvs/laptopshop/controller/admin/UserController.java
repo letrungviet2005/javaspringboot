@@ -74,6 +74,7 @@ public class UserController {
         return "admin/user/update-user";
     }
 
+// Update new User
     @PostMapping("/admin/user/update")
     public String postUpdateUser(Model model, @ModelAttribute("user") User user) {
         User existingUser = this.userService.getUserById(user.getId());
@@ -83,7 +84,7 @@ public class UserController {
             existingUser.setFullname(user.getFullname());
             existingUser.setPhone(user.getPhone());
             existingUser.setAddress(user.getAddress());
-            existingUser.setAvatar(user.getAvatar()); // Assuming avatar is updated
+            existingUser.setAvatar(user.getAvatar()); 
             this.userService.handleUpdateUser(existingUser);
         }
 
