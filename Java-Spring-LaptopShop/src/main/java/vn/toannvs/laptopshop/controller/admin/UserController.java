@@ -98,7 +98,6 @@ public class UserController {
             @ModelAttribute("newUser") User user,
             @RequestParam("hoidanitFile") MultipartFile file) {
 
-        // Gọi service lưu user
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hasspassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hasspassword);
@@ -118,6 +117,7 @@ public class UserController {
         return "admin/user/user";
     }
 
+    //Delete User
     @GetMapping(value = "/admin/user/delete/{id}")
     public String getDeleteUser(@PathVariable("id") long id, Model model) {
         User user = this.userService.getUserById(id);
